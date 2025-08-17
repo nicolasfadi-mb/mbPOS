@@ -1,0 +1,15 @@
+Options -Indexes
+AddDefaultCharset utf-8
+
+<IfModule mod_security.c>
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+# Try to signal to InfinityFree/Imunify to skip JS challenge
+<IfModule mod_headers.c>
+    Header always set X-Disable-Challenge "true"
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Accept, Authorization, X-Admin-Pin"
+</IfModule>

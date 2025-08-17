@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # API Rule: Forward any request starting with /api/ to your backend folder
+  RewriteRule ^api/(.*)$ pos_backend/api/$1 [L]
+
+  # React App Rule: For all other requests, serve the main index.html file
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.html [QSA,L]
+</IfModule>

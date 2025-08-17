@@ -1,0 +1,57 @@
+{
+  "name": "cafe-pos-pro",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A sleek, modern Point of Sale (POS) system for a coffee shop.",
+  "author": "Cafe POS Pro",
+  "main": "electron/dist/main.cjs",
+  "scripts": {
+    "dev": "concurrently \"npm:vite\" \"npm:electron:dev\"",
+    "vite": "vite",
+    "electron:dev": "wait-on tcp:5173 && npm run electron:build && electron .",
+    "electron:build": "tsc -p electron",
+    "build": "npm run electron:build && vite build && electron-builder",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.539.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "typescript": "^5.2.2",
+    "vite": "^6.3.5",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.cafepospro.app",
+    "productName": "Cafe POS Pro",
+    "files": [
+      "dist/**/*",
+      "electron/dist/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
